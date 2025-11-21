@@ -14,8 +14,8 @@ const Home = () => {
   const fetchRecipes = async (searchQuery = '') => {
     try {
       const url = searchQuery 
-        ? `https://mern-final-project-mhenga254alexmwangi.onrender.com//api/recipes?search=${searchQuery}`
-        : 'https://mern-final-project-mhenga254alexmwangi.onrender.com//api/recipes';
+        ? `https://mern-final-project-mhenga254alexmwangi.onrender.com/api/recipes?search=${searchQuery}`
+        : 'https://mern-final-project-mhenga254alexmwangi.onrender.com/api/recipes';
       
       const response = await axios.get(url);
       setRecipes(response.data);

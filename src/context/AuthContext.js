@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('https://mern-final-project-mhenga254alexmwangi.onrender.com//api/auth/login', {
+      const response = await axios.post('https://mern-final-project-mhenga254alexmwangi.onrender.com/api/auth/login', {
         email,
         password
       });
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      const response = await axios.post('https://mern-final-project-mhenga254alexmwangi.onrender.com//api/auth/register', {
+      const response = await axios.post('https://mern-final-project-mhenga254alexmwangi.onrender.com/api/auth/register', {
         name,
         email,
         password

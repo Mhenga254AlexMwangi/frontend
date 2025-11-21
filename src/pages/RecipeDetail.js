@@ -13,7 +13,7 @@ const RecipeDetail = () => {
 
   const fetchRecipe = useCallback(async () => {
     try {
-      const response = await axios.get(`https://mern-final-project-mhenga254alexmwangi.onrender.com//api/recipes/${id}`);
+      const response = await axios.get(`https://mern-final-project-mhenga254alexmwangi.onrender.com/api/recipes/${id}`);
       setRecipe(response.data);
     } catch (error) {
       console.error('Error fetching recipe:', error);
@@ -33,7 +33,7 @@ const RecipeDetail = () => {
     }
 
     try {
-      await axios.post(`https://mern-final-project-mhenga254alexmwangi.onrender.com//api/recipes/${id}/like`, {}, {
+      await axios.post(`https://mern-final-project-mhenga254alexmwangi.onrender.com/api/recipes/${id}/like`, {}, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       fetchRecipe(); // Refresh recipe data
@@ -53,7 +53,7 @@ const RecipeDetail = () => {
 
     setSubmitting(true);
     try {
-      await axios.post(`https://mern-final-project-mhenga254alexmwangi.onrender.com//api/recipes/${id}/comments`, {
+      await axios.post(`https://mern-final-project-mhenga254alexmwangi.onrender.com/api/recipes/${id}/comments`, {
         text: comment
       }, {
         headers: { Authorization: `Bearer ${user.token}` }

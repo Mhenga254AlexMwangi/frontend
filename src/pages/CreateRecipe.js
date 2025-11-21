@@ -101,7 +101,7 @@ const CreateRecipe = () => {
         }
       });
 
-      await axios.post('https://mern-final-project-mhenga254alexmwangi.onrender.com//api/recipes', submitData, {
+      await axios.post('https://mern-final-project-mhenga254alexmwangi.onrender.com/api/recipes', submitData, {
         headers: { 
           Authorization: `Bearer ${user.token}`,
           'Content-Type': 'multipart/form-data'
