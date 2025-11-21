@@ -65,7 +65,7 @@ const UserSettings = () => {
     setError('');
 
     try {
-      await axios.put('https://mern-final-project-mhenga254alexmwangi.onrender.com//api/users/profile', formData, {
+      await axios.put('https://mern-final-project-mhenga254alexmwangi.onrender.com/api/users/profile', formData, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       
@@ -81,12 +81,25 @@ const UserSettings = () => {
     }
   };
 
+  // Remove unused variables or use them
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  const handleNavigateToProfile = () => {
+    navigate(`/profile/${user._id}`);
+  };
+
   if (!user) {
     return (
       <div className="auth-required">
         <div className="container">
           <h2>Login Required</h2>
           <p>Please login to update your profile.</p>
+          <button onClick={() => navigate('/login')} className="btn-primary">
+            Go to Login
+          </button>
         </div>
       </div>
     );
@@ -95,7 +108,17 @@ const UserSettings = () => {
   return (
     <div className="user-settings">
       <div className="container">
-        <h1>Profile Settings</h1>
+        <div className="settings-header">
+          <h1>Profile Settings</h1>
+          <div className="header-actions">
+            <button onClick={handleNavigateToProfile} className="btn-secondary">
+              View My Profile
+            </button>
+            <button onClick={handleLogout} className="btn-logout">
+              Logout
+            </button>
+          </div>
+        </div>
         
         {message && <div className="success-message">{message}</div>}
         {error && <div className="error-message">{error}</div>}
@@ -202,9 +225,11 @@ const UserSettings = () => {
             )}
           </div>
 
-          <button type="submit" disabled={loading} className="submit-btn">
-            {loading ? 'Updating...' : 'Update Profile'}
-          </button>
+          <div className="form-actions">
+            <button type="submit" disabled={loading} className="submit-btn">
+              {loading ? 'Updating...' : 'Update Profile'}
+            </button>
+          </div>
         </form>
       </div>
     </div>

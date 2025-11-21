@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,13 +8,9 @@ const Profile = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchUserProfile();
-  }, [id]);
-
-  const fetchUserProfile = async () => {
+  const fetchUserProfile = useCallback(async () => {
     try {
-      const response = await axios.get(`https://mern-final-project-mhenga254alexmwangi.onrender.com//api/users/${id}`);
+      const response = await axios.get(`https://mern-final-project-mhenga254alexmwangi.onrender.com/api/users/${id}`);
       setUser(response.data);
       setRecipes(response.data.recipes || []);
     } catch (error) {
@@ -22,7 +18,11 @@ const Profile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]); // Add id as dependency
+
+  useEffect(() => {
+    fetchUserProfile();
+  }, [fetchUserProfile]); // Now fetchUserProfile is stable due to useCallback
 
   if (loading) {
     return <div className="loading">Loading profile...</div>;
